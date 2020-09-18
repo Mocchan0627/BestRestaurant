@@ -1,0 +1,108 @@
+.gotohome
+    = link_to("詳細検索画面に戻る","/restaurants/home")
+.gotoresult
+    a href="javascript:history.back();"  検索結果一覧に戻る
+- if @show_rest == nil
+    p#errortext = @error
+    p="#{@url}"
+-else
+    .showcard
+        - @show_rest.each do |rest|
+            -if rest[:image1]!=""
+                .res_img.show_img
+                    = image_tag(rest[:image1])
+            -else
+                .no_img.show_img
+                    p no image
+            .card-name.showcard-name
+                p.rest_name = "#{rest[:name]}"
+                p.rest_kana = "#{rest[:kana]}"
+            .pr_short
+                p = "#{rest[:pr_short]}"
+            .showcard-info
+                p = "電話番号：#{rest[:tel]}"
+                p = "PCサイト：#{rest[:url]}"
+                p = "携帯サイト：#{rest[:url_mobile]}"
+            .pr_long
+                -pr_long = rest[:pr_long].split("\n")
+                - pr_long.each do |pr|
+                    p = "#{pr}"
+                    <br>
+            .info_table
+                table
+                    h1 = "#{rest[:name]}　基本情報"
+                    tr
+                        th
+                            p 店名
+                        td
+                            p = "#{rest[:name]}"
+                            p = "#{rest[:kana]}"
+                    tr
+                        th
+                            p 住所
+                        td
+                            p = "#{rest[:address]}"
+                    tr
+                        th
+                            p アクセス
+                        td
+                            - if rest[:walk].match?(/.*徒歩.*/)
+                                -rest[:walk]="#{rest[:walk]}分"
+                            - elsif rest[:walk].match?(/.*車.*/)
+                                -rest[:walk]="#{rest[:walk]}分"
+                            - elsif rest[:walk]!=""
+                                -rest[:walk]="徒歩#{rest[:walk]}分"
+                            - if rest[:line]=="" && rest[:station]==""
+                                p 情報なし
+                            - else
+                                p = "#{rest[:line]} #{rest[:station]} #{rest[:walk]}"
+                    tr
+                        th
+                            p 駐車場
+                        td
+                            - if rest[:parking]==""
+                                -rest[:parking]="情報なし"
+                            p = "#{rest[:parking]}"
+                    tr
+                        th
+                            p 営業時間
+                        td
+                            - if rest[:opentime]==""
+                                -rest[:opentime]="情報なし"
+                            p = "#{rest[:opentime]}"
+                    tr
+                        th
+                            p 定休日
+                        td
+                            - if rest[:holiday]==""
+                                -rest[:holiday]="情報なし"
+                            p = "#{rest[:holiday]}"
+                    tr
+                        th
+                            p 平均予算
+                        td
+                            - if rest[:budget]==""
+                                -rest[:budget]="情報なし"
+                            - else
+                                -rest[:budget]="￥#{rest[:budget]}"
+                            - if rest[:lunch]==""
+                                -rest[:lunch]="情報なし"
+                            - else
+                                -rest[:lunch]="￥#{rest[:lunch]}"
+                            - if rest[:party]==""
+                                -rest[:party]="情報なし"
+                            - else
+                                -rest[:party]="￥#{rest[:party]}"
+                            p = "#{rest[:budget]}（通常）"
+                            p = "#{rest[:lunch]}（ランチ）"
+                            p = "#{rest[:party]}（宴会）"
+                    tr
+                        th
+                            p クレジットカード
+                        td
+                            - if rest[:card]==""
+                                -rest[:card]="情報なし"
+                            p = "#{rest[:card]}"
+
+.gotoresult
+    a href="javascript:history.back();"  検索結果一覧に戻る

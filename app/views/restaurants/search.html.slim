@@ -1,0 +1,39 @@
+
+p#errortext = @error
+.container
+  .gotohome
+    = link_to("詳細検索画面に戻る","/restaurants/home")
+  .index
+    - if @rests
+      - @rests.each do |rest|
+        .card
+          -if rest[:image1]!=""
+            .res_img
+              = image_tag(rest[:image1])
+          -else
+            .no_img
+              p no image
+          .card-contents
+            /#fav_btn
+              = link_to("お気に入り登録","/restants/favsave/#{rest[:id]}",method: :save)
+              = link_to("お気に入り登録済","/restants/favdelete/#{rest[:id]}",method: :delete)/
+            .card-name
+                p.rest_name = "#{rest[:name]}"
+            .card-info
+                p = "住所：#{rest[:address]}"
+                - if rest[:walk]!=nil
+                    - if rest[:walk].match?(/.*徒歩.*/)
+                        -rest[:walk]="#{rest[:walk]}分"
+                    - elsif rest[:walk].match?(/.*車.*/)
+                        -rest[:walk]="#{rest[:walk]}分"
+                    - elsif rest[:walk]!=""
+                        -rest[:walk]="徒歩#{rest[:walk]}分"
+                - if rest[:line]=="" && rest[:station]==""
+                  p アクセス：情報なし
+                - else
+                  p = "アクセス：#{rest[:line]} #{rest[:station]} #{rest[:walk]}"
+                p = "予算：￥#{rest[:budget]}"
+                p = "電話番号：#{rest[:tel]}"
+          = link_to("詳細を見る","/restaurants/show/#{rest[:id]}")
+    .pagenation
+      = paginate @rests

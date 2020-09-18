@@ -1,0 +1,52 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title BestRestaurant
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    header
+      .header-logo
+        | Best Restaurant
+      ul.header-menus
+        li お気に入り一覧
+        / = link_to("お気に入り一覧","/restaurants/index")
+      .form_field
+        = form_with(url: 'search',local: true,method: :get) do |f|
+          = f.text_field :keyword, placeholder: "店名や地名などのキーワードを入力", class: 'form-control'
+          = submit_tag '検索', class: "btn btn-primary"
+          = f.check_box :geolocation
+          = f.label "現在地からの距離を指定(現在地を取得します)"
+          #rangeset
+            = f.radio_button :range, 1, checked: true
+            = f.label :range, "300m", value: 1, style: "display: inline-block;"
+            = f.radio_button :range, 2
+            = f.label :range, "500m",  value: 2, style: "display: inline-block;"
+            = f.radio_button :range, 3
+            = f.label :range, "1km",  value: 3, style: "display: inline-block;"
+            = f.radio_button :range, 4
+            = f.label :range, "2km",  value: 4, style: "display: inline-block;"
+            = f.radio_button :range, 5
+            = f.label :range, "3km",  value: 5, style: "display: inline-block;"
+          = f.text_field :latitude
+          = f.text_field :longitude
+          
+    .main
+
+      .container
+        = yield
+
+javascript:
+        document.getElementById("geolocation").onchange = function(){
+          if(this.checked){
+            getPosition();
+            document.getElementById("rangeset").style.display = "block";
+            }
+          else
+            document.getElementById("rangeset").style.display = "none";
+        }
+
+        

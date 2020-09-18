@@ -1,0 +1,281 @@
+// Place all the styles related to the restaurants controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "application";
+
+$card-height: 260px;
+
+#latitude,#longitude {
+    display: none;
+}
+
+#rangeset{
+    display: none;
+}
+
+.home_form{
+    @include mq(sp){
+        top: -80px;
+    }
+    @include mq(tb){
+        top: -88px;
+    }
+    @include mq(pc){
+        top: -96px;
+    }
+    z-index: 10;
+    height: 300px;
+    input[type="text"]{
+        height: 28px;
+        width: 30%;
+        margin-left: 60px;
+        @include mq(pc){
+            margin-left: 120px;
+        }
+    }
+}
+
+.index{
+    
+}
+
+.card{
+    @include mq(sp) {
+        width: 90%;
+    }
+    @include mq(tb) {
+        width: 85%;
+    }
+    @include mq(pc) {
+        width: 900px;
+    }
+    height: $card-height;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 2px solid rgb(180, 180, 180);
+    display: block;
+    position: relative;
+    z-index: 1;
+    a{
+        width: 100%;
+        height: 100%;
+        font-size: 12px;
+        position: absolute;
+        z-index: 2;
+        bottom: 0;
+        right: 0;
+        text-indent: -999px;
+        
+    }
+    &:hover {
+        filter:alpha(opacity=70);/* IE 6,7*/
+        -ms-filter: "alpha(opacity=70)";/* IE 8,9 */
+        -moz-opacity:0.7;/* FF , Netscape */
+        -khtml-opacity: 0.7;/* Safari 1.x */
+        opacity:0.7;
+        zoom:1;/*IE*/
+    }
+}
+.res_img{
+    width: 240px;
+    height: 240px;
+    color: #fff;
+    background-color: rgb(200, 200, 200);
+    float: left;
+    margin: 10px 20px;
+    
+}
+
+.no_img{
+    width: 240px;
+    height: 240px;
+    color: #fff;
+    background-color: rgb(200, 200, 200);
+    float: left;
+    margin: 10px 20px;
+    p{
+        line-height: 240px;
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
+.card-contents{
+    float: right;
+    @include mq(tb){
+        width: 60%;
+    }
+    @include mq(pc){
+        width: 65%;
+    }
+}
+
+.rest_name{
+    
+    margin: 32px 0px 20px 0px;
+    width: 100%;
+    text-align: center;
+    @include mq(sp){
+        font-size: 12px;
+    }
+    @include mq(tb){
+        font-size: 16px;
+    }
+    @include mq(pc){
+        font-size: 20px;
+    }
+
+}
+
+.card-info{
+
+    float: left;
+    p {
+        @include mq(sp){
+            line-height: 30px;
+            font-size: 8px;    
+        }
+        @include mq(tb){
+            line-height: 30px;
+            font-size: 12px;    
+        }
+        @include mq(pc){
+            line-height: 30px;
+            font-size: 16px;
+        }
+    }
+    
+
+}
+
+.pagenation{
+    margin: 40px auto;
+    text-align: center;
+}
+
+.page{
+    padding: 8px;
+    margin: 4px;
+    border-radius: 2px;
+    border: 0.5px solid rgb(180, 180, 180);
+}
+
+.showcard{
+    @include mq(sp) {
+        width: 90%;
+    }
+    @include mq(tb) {
+        width: 85%;
+    }
+    @include mq(pc) {
+        width: 900px;
+    }
+    margin: 20px auto;
+    border-radius: 10px;
+    border: 2px solid rgb(180, 180, 180);
+    display: block;
+}
+
+.show_img{
+    margin: 60px 20px 0px 20px;
+}
+
+.showcard-name{
+    margin: 40px 0px 32px 0px;
+    .rest_name{
+        @include mq(sp){
+            font-size: 16px;
+        }
+        @include mq(tb){
+            font-size: 20px;
+        }
+        @include mq(pc){
+            font-size: 24px;
+        }
+    }
+    .rest_kana{
+        @include mq(sp){
+            font-size: 8px;
+        }
+        @include mq(tb){
+            font-size: 12px;
+        }
+        @include mq(pc){
+            font-size: 16px;
+        }
+        color: #a5a5a5;
+        text-align: center;
+    }
+}
+
+.pr_short{
+    width: 70%;
+    padding: 10px 3%;
+    margin-left: 30%;
+}
+
+.showcard-info{
+    width: 70%;
+    padding: 20px 3%;
+    margin-left: 30%;
+    @include mq(sp){
+        font-size: 10px;
+    }
+    @include mq(tb){
+        font-size: 12px;
+    }
+    @include mq(pc){
+        font-size: 16px;
+    }
+    p{
+        padding: 2px;
+    }
+}
+
+.pr_long{
+    @include mq(sp){
+        font-size: 10px;
+    }
+    @include mq(tb){
+        font-size: 12px;
+    }
+    @include mq(pc){
+        font-size: 16px;
+    }
+    margin: 20px 5%;
+    word-break: break-all;
+    p{
+        padding: 2px;
+    }
+}
+
+.info_table{
+    width: 90%;
+    margin: 20px auto;
+    table{
+        width: 100%;
+    }
+    h1{
+        background-color: $main-color;
+        color: #fff;
+        height: 32px;
+        line-height: 32px;
+        font-size: 16px;
+        padding-left: 12px;
+    }
+    tr{
+
+    }
+    th{
+        border: 1px solid $main-color;
+        background-color: #a5a5a5;
+        font-size: 12px;
+        padding: 10px 8px;
+    }
+    td{
+        border: 1px solid $main-color;
+        font-size: 12px;
+        padding: 10px 0px 10px 8px;
+    }
+}
