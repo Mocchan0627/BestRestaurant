@@ -7,7 +7,7 @@ class RestaurantsController < ApplicationController
   require 'active_support/core_ext'
 
   @@url = "https://api.gnavi.co.jp/RestSearchAPI/v3/"
-  @@access_key = "59a66dc216cc05a7da5dcc60fe2b3387"
+  @@access_key = "*****"
   @@latitude = nil
   @@longitude = nil
 
